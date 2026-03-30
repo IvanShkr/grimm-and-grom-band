@@ -17,7 +17,7 @@ function styles() {
 
 // 2. Скрипти (JS)
 function scripts() {
-    return src('src/js/script.js')
+    return src('src/js/script.js') // Перевір, чи файл лежить саме тут!
         .pipe(concat('script.min.js'))
         .pipe(uglify())
         .pipe(dest('dist/js'))
