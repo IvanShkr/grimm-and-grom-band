@@ -1,0 +1,109 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #0a0a0a;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between; // Лого зліва, Меню справа
+        align-items: center;
+    }
+
+    .logo {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 24px;
+        letter-spacing: 2px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05); // Легкий ефект при наведенні на лого
+        }
+    }
+
+    .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 35px; // Відстань між пунктами
+
+        li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase; // Робимо капсом для рок-стилю
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+
+            // Ефект підсвічування жовтим при наведенні
+            &:hover {
+                color: #ffcc00; // Жовтий колір тексту
+                text-shadow: 0 0 10px rgba(255, 204, 0, 0.4); // Легке сяйво
+            }
+
+            // Опціонально: жовта лінія під пунктом при наведенні
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #ffcc00;
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after {
+                width: 100%; // Лінія розширюється при наведенні
+            }
+        }
+    }
+}
+
+.footer {
+    padding: 60px 0;
+    border-top: 1px solid $clr-border;
+    background: #000;
+    color: #555;
+    font-size: 13px;
+
+    .footer-top,
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .footer-top {
+        margin-bottom: 25px;
+    }
+
+    .footer-socials {
+        a {
+            color: #888;
+            text-decoration: none;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    .footer-bottom a {
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+        margin-right: 25px;
+
+        &:hover {
+            color: $clr-pink;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+@media (max-width: 992px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-img-float {
+        float: none;
+        width: 100%;
+        margin: 0 0 25px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-pink,
+    .btn-yellow {
+        width: 100%;
+        text-align: center;
+    }
+
+    .concerts-table thead {
+        display: none;
+    }
+
+    .concerts-table td {
+        display: block;
+        text-align: center;
+        border: none;
+        padding: 10px 0;
+    }
+
+    .btn-pink-sm {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+    }
+}
+
+// Вмикаємо бургер на мобільних
+@media (max-width: 768px) {
+    .burger {
+        display: block !important; // Тепер він точно з'явиться і буде клікабельним
+    }
+}

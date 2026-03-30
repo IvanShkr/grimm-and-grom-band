@@ -1,0 +1,270 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    padding-top: 80px;
+
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 100%),
+        url('../img/hero-bg.webp') no-repeat center center;
+    background-size: cover;
+
+    .container {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .hero-content {
+        max-width: 800px; // Трохи збільшив макс-ширину, щоб довгий заголовок влізав
+        text-align: left;
+    }
+
+    h1 {
+        // Адаптивний розмір: мінімум 32px, ідеально 5vw, максимум 64px
+        font-size: clamp(32px, 5vw, 64px);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+
+        // СУВОРО В ОДИН РЯДОК
+        white-space: nowrap;
+        overflow: hidden; // Про всяк випадок, щоб не ламало верстку
+        text-overflow: ellipsis; // Якщо назва буде занадто довгою для екрана, вона м'яко скоротиться
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: #fff;
+    }
+
+    .hero-description {
+        margin-bottom: 40px;
+
+        p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+
+            .highlight {
+                color: #00d4ff;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .btn-yellow {
+        padding: 18px 45px;
+        font-size: 14px;
+    }
+}
+
+// КОНЦЕРТИ
+.concerts {
+    padding: 100px 0;
+
+    .concert-card {
+        background: #111;
+        border: 1px solid $clr-border;
+        border-radius: 12px;
+        padding: 40px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            text-align: left;
+            padding: 15px;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+        }
+
+        td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #222;
+            font-size: 14px;
+        }
+    }
+}
+
+// УЧАСНИКИ (Рівно 3 колонки)
+.members {
+    padding: 100px 0;
+
+    .members-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .member-card {
+        background: $clr-card-bg;
+        border: 1px solid $clr-border;
+        border-radius: 12px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #888;
+        }
+    }
+}
+
+// --- НАША ІСТОРІЯ ---
+.history {
+    padding: 120px 0;
+    // Плавний перехід від дуже темного синього до дуже темного бордового
+    background: linear-gradient(90deg, $dark-blue 0%, $dark-burgundy 100%);
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03); // Майже непомітна лінія розмежування
+
+    .section-title {
+        text-align: left;
+        color: #fff;
+        font-size: 28px;
+        margin-bottom: 35px;
+    }
+
+    .history-block {
+        p {
+            color: rgba(255, 255, 255, 0.7); // Текст трохи приглушений для комфорту
+            line-height: 1.8;
+            margin-bottom: 22px;
+            font-size: 14px;
+            text-align: justify;
+        }
+    }
+
+    .history-float-img {
+        float: right;
+        width: 420px;
+        margin-left: 45px;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        // Тінь робимо м'якшою, щоб фото "втопало" в градієнті
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+// --- ЗВ'ЯЖИСЬ З НАМИ ---
+.contact-section {
+    padding: 120px 0;
+    // Реверсивний градієнт: Темний бордо -> Темний синій
+    background: linear-gradient(90deg, $dark-burgundy 0%, $dark-blue 100%);
+
+    .section-title {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 65px;
+        font-size: 14px;
+    }
+
+    .contact-grid {
+        display: flex;
+        gap: 60px;
+        align-items: flex-start;
+    }
+
+    .contact-form {
+        flex: 1.3;
+        background: rgba(0, 0, 0, 0.2); // Легкий фон для контрасту
+        padding: 35px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        .form-row {
+            display: flex;
+            gap: 20px; // Відстань між Ім'ям та Email
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .field {
+            flex: 1; // Кожне поле в рядку займає рівну частину
+            display: flex;
+            flex-direction: column;
+
+            label {
+                color: #666;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                background: rgba(13, 17, 23, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 14px;
+                color: #fff;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.3s, background 0.3s;
+
+                &:focus {
+                    border-color: $clr-pink;
+                    background: rgba(13, 17, 23, 0.9);
+                }
+            }
+        }
+
+        // Окреме поле для повідомлення (щоб воно було під рядком)
+        .message-field {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+
+            textarea {
+                min-height: 120px;
+                resize: none;
+            }
+        }
+    }
+
+    .map-box {
+        flex: 1;
+
+        .map-wrapper {
+            background: #050505;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            iframe {
+                display: block;
+                filter: grayscale(1) brightness(0.8) contrast(1.2); // Робимо мапу темнішою
+                opacity: 0.7;
+            }
+        }
+    }
+}

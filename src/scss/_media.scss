@@ -1,0 +1,294 @@
+/* --- ГЛОБАЛЬНА АДАПТИВНІСТЬ G&G --- */
+
+// 1. БАЗОВІ НАЛАШТУВАННЯ (для всіх екранів)
+.container {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+// 2. АДАПТИВ ДЛЯ МОБІЛОК ТА ПЛАНШЕТІВ (до 768px)
+@media (max-width: 768px) {
+
+    // --- ШАПКА ТА БУРГЕР ---
+    .header {
+        height: 60px;
+
+        .logo {
+            font-size: 20px;
+        }
+    }
+
+    .burger {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 28px;
+        height: 18px;
+        z-index: 1002;
+
+        span {
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        &.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        &.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        &.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s ease;
+        z-index: 1001;
+
+        &.active {
+            right: 0;
+        }
+
+        .nav-list {
+            flex-direction: column;
+            gap: 25px;
+
+            a {
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    // --- HERO СЕКЦІЯ ---
+    .hero {
+        padding: 100px 0 60px;
+        text-align: center;
+
+        h1 {
+            font-size: 28px !important;
+            line-height: 1.2;
+        }
+
+        .hero-content {
+            align-items: center;
+        }
+    }
+
+    // --- УЧАСНИКИ ГУРТУ (Один за одним) ---
+    .members-grid,
+    .members-list {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 40px !important;
+
+        .member-card {
+            width: 100% !important;
+            max-width: 320px;
+            text-align: center;
+
+            img {
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            h3 {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    // --- ТАБЛИЦЯ КОНЦЕРТІВ (Перетворення в картки) ---
+    .concert-table {
+        display: block;
+        width: 100%;
+        border: none;
+
+        thead {
+            display: none;
+        }
+
+        // Ховаємо заголовки
+
+        tbody,
+        tr,
+        td {
+            display: block;
+            width: 100%;
+        }
+
+        tr {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        td {
+            text-align: center;
+            padding: 5px 0;
+            border: none;
+            color: #fff;
+
+            &:nth-child(1) {
+                font-size: 18px;
+                font-weight: 700;
+                color: #ffcc00;
+            }
+
+            // Місто
+            &:nth-child(2)::before {
+                content: "Місць: ";
+                opacity: 0.6;
+            }
+
+            // К-сть місць
+            &:nth-child(3) {
+                margin-bottom: 15px;
+                font-size: 14px;
+                opacity: 0.8;
+            }
+
+            // Дата
+
+            .btn {
+                width: 100%;
+                max-width: 260px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    // --- ЗВ'ЯЖІТЬСЯ З НАМИ (Контакти) ---
+    .contact-section {
+        .contact-grid {
+            display: flex !important;
+            flex-direction: column !important; // Форма і карта одна під одною
+            gap: 30px;
+        }
+
+        .contact-form,
+        .map-box {
+            width: 100% !important;
+        }
+
+        .map-box {
+            height: 250px; // Зменшуємо висоту карти на мобілках
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+
+            input,
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// 3. ДЛЯ ДУЖЕ МАЛЕНЬКИХ ЕКРАНІВ (iPhone SE, до 480px)
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    h2.section-title {
+        font-size: 26px !important;
+    }
+
+    .btn-yellow,
+    .btn-pink {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+// 4. ДЛЯ ДЕСКТОПІВ (від 769px і вище)
+@media (min-width: 769px) {
+    .container {
+        max-width: 1140px;
+    }
+
+    .burger {
+        display: none !important;
+    }
+
+    .nav {
+        display: block !important;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+
+        .nav-list {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 35px;
+
+            a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    // Повертаємо учасників у ряд
+    .members-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    // Повертаємо таблицю у звичний вигляд
+    .concert-table {
+        display: table !important;
+
+        tr {
+            display: table-row !important;
+        }
+
+        td,
+        th {
+            display: table-cell !important;
+        }
+    }
+
+    // Повертаємо контакти у два стовпчики
+    .contact-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+
+        .contact-form {
+            width: 48%;
+        }
+
+        .map-box {
+            width: 48%;
+        }
+    }
+}
+
+// СТОП СКРОЛЛ ПРИ ВІДКРИТОМУ МЕНЮ
+body.no-scroll {
+    overflow: hidden;
+}
