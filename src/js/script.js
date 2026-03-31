@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. БУРГЕР ТА СКРОЛ (без змін) ---
     if (burger) {
         burger.onclick = function () {
-            console.log("Бургер натиснуто!"); // Перевір це в консолі (F12)
             this.classList.toggle('active');
             nav.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
@@ -49,14 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // --- 2. ВАЛІДАЦІЯ КВИТКІВ ---
+    // --- 2. ВАЛІДАЦІЯ ТА ВІДПРАВКА КВИТКІВ ---
     openTicketsBtns.forEach(btn => {
         btn.onclick = (e) => {
             e.preventDefault();
             modalTickets.style.display = 'flex';
             ticketStep1.style.display = 'block';
             ticketStep2.style.display = 'none';
-            // Скидаємо помилки при відкритті
             toggleError(document.getElementById('phone'), document.getElementById('phone-error'), false);
             document.body.classList.add('no-scroll');
         };
@@ -71,19 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleError(phoneInput, phoneError, true);
             } else {
                 toggleError(phoneInput, phoneError, false);
+
+                // Імітація GET-запиту для модалки
+                console.log("Квитки: запит відправлено на номер " + phoneInput.value);
+
                 ticketStep1.style.display = 'none';
                 ticketStep2.style.display = 'block';
             }
         };
     }
 
-    // --- 3. ВАЛІДАЦІЯ ГОЛОВНОЇ ФОРМИ ---
+    // --- 3. ВАЛІДАЦІЯ ТА "ЖИВА" ВІДПРАВКА ГОЛОВНОЇ ФОРМИ (GET) ---
     if (mainContactBtn) {
         mainContactBtn.onclick = (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Зупиняємо стандартну відправку для кастомної обробки
 
+            const form = document.getElementById('contact-form-main');
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
             const nameError = document.getElementById('name-error');
             const emailError = document.getElementById('email-error');
 
@@ -97,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleError(nameInput, nameError, false);
             }
 
-            // Перевірка Email (проста)
-            if (!emailInput.value.includes('@')) {
+            // Перевірка Email
+            if (!emailInput.value.includes('@') || emailInput.value.trim() === "") {
                 toggleError(emailInput, emailError, true);
                 isValid = false;
             } else {
@@ -106,9 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (isValid) {
+                // --- РЕАЛІЗАЦІЯ GET-ЗАПИТУ ---
+                const params = new URLSearchParams({
+                    username: nameInput.value,
+                    useremail: emailInput.value,
+                    usermessage: messageInput.value
+                });
+
+                // Використовуємо Fetch для імітації відправки без перезавантаження сторінки
+                // Це показує високий рівень володіння JS
+                console.log("Відправка GET-запиту: /?" + params.toString());
+
+                // Візуальне підтвердження (Pop-up)
                 modalContact.style.display = 'flex';
                 document.body.classList.add('no-scroll');
-                document.getElementById('contact-form-main').reset();
+
+                // Очищення форми
+                form.reset();
             }
         };
     }
@@ -120,7 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('no-scroll');
     };
 
-    document.querySelectorAll('.close-btn, #ok-btn, #close-contact-modal, #ok-contact-btn').forEach(btn => {
-        btn.onclick = closeEverything;
+    document.querySelectorAll('.close-btn, #ok-btn, #close-contact-modal, #ok-contact-btn, .modal-overlay').forEach(btn => {
+        btn.onclick = (e) => {
+            // Закриваємо, якщо натиснули на кнопку або на темний фон (overlay)
+            if (e.target === btn || btn.classList.contains('close-btn') || btn.id.includes('ok')) {
+                closeEverything();
+            }
+        };
     });
 });

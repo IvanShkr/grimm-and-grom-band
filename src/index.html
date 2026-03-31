@@ -151,23 +151,23 @@
                 <h2 class="section-title">Зв'яжись з нами</h2>
                 <p class="section-subtitle">Маєш питання? Пиши нам прямо зараз!</p>
                 <div class="contact-grid">
-                    <form class="contact-form" id="contact-form-main">
+                    <form class="contact-form" id="contact-form-main" action="/" method="GET">
                         <div class="form-row">
                             <div class="field">
                                 <label>Ім'я</label>
-                                <input type="text" id="name" placeholder="Твоє ім'я" required>
+                                <input type="text" id="name" name="username" placeholder="Твоє ім'я" required>
                                 <span id="name-error" class="error-message">Будь ласка, введіть ім'я</span>
                             </div>
                             <div class="field">
                                 <label>Email</label>
-                                <input type="email" id="email" placeholder="example@mail.com" required>
+                                <input type="email" id="email" name="useremail" placeholder="example@mail.com" required>
                                 <span id="email-error" class="error-message">Введіть коректний Email</span>
                             </div>
                         </div>
 
                         <div class="field message-field">
                             <label>Повідомлення</label>
-                            <textarea id="message" placeholder="Розкажи про свої ідеї..."></textarea>
+                            <textarea id="message" name="usermessage" placeholder="Розкажи про свої ідеї..."></textarea>
                         </div>
 
                         <button type="submit" id="main-contact-btn" class="btn btn-pink">Відправити</button>
@@ -190,7 +190,8 @@
             <div class="footer-top">
                 <span>© 2026 «Грим та Грім». Всі права захищені.</span>
                 <div class="footer-socials"><a href="#">Instagram</a> — <a href="#">YouTube</a> — <a
-                        href="#">Facebook</a></div>
+                        href="#">Facebook</a>
+                </div>
             </div>
             <div class="footer-bottom">
                 <a href="mailto:booking@lotoplay">booking@lotoplay</a>
